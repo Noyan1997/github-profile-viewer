@@ -1,14 +1,42 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-
-const UserName: NextPage = (props: any) => {
+import { IUserData } from '../../../interface/global'
+// object destruction
+const UserName: NextPage<{ users: IUserData }> = ({
+  users: {
+    name,
+    avatar_url,
+    bio,
+    followers,
+    blog,
+    location,
+    following,
+    message,
+    login,
+  },
+}) => {
   const { query, push } = useRouter()
-  if (props.users.message) {
-    // window.alert('nadari')
+  if (message) {
+    console.log('This user does not exist')
     push('/')
     return null
   }
-  return <span>{`UserName ${query.username}`}</span>
+
+  return (
+    <>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {/* <img width="30px" height="30px" alt="" src={avatar_url ?? ''} /> */}
+        <img width="30px" height="30px" alt="" src={avatar_url} />
+        <span>{`Name : ${name}`}</span>
+        <span>{`UserName : ${query.username}`}</span>
+        <span> {`Followers :  ${followers}`}</span>
+        <span> {`Following:  ${following}`}</span>
+        {bio && <span>Bio:{bio}</span>}
+        {location && <span>Location :{location}</span>}
+        {blog && <a href={blog}>{blog}</a>}
+      </div>
+    </>
+  )
 }
 
 export default UserName

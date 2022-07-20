@@ -1,8 +1,11 @@
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 const Login: NextPage = () => {
-  const [value, setValue] = useState<string>()
+  const [value, setValue] = useState<string>('noyan1997')
+  const { push } = useRouter()
+
   return (
     <>
       <div>
@@ -13,7 +16,7 @@ const Login: NextPage = () => {
           placeholder="User name"
         />
         <input disabled type="password" placeholder="password" />
-        <button disabled={!value} onClick={() => console.log(value)}>
+        <button disabled={!value} onClick={() => push(`/profile/${value}`)}>
           Sign in
         </button>
       </div>

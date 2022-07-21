@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 const Login: NextPage = () => {
-  const [value, setValue] = useState<string>('noyan1997')
+  const [value, setValue] = useState<string>('kevwil')
   const { push } = useRouter()
 
   return (

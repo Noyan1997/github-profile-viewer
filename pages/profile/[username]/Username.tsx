@@ -23,8 +23,10 @@ const UserName: NextPage<{ users: IUserData }> = ({ users }) => {
 
   return (
     <>
-      <Information users={users} />
-      <Repository users={users} />
+      <div className="row user_profile_parrent">
+        <Information users={users} />
+        <Repository users={users} />
+      </div>
     </>
   )
 }

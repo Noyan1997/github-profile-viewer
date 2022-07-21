@@ -1,22 +1,39 @@
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import PeopleIcon from '@mui/icons-material/People'
 import type { NextPage } from 'next'
 import { IInformation } from '../../../interface/global'
 
 const Information: NextPage<IInformation> = ({ users }) => {
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div className="info_patternt column">
         {/* <img width="30px" height="30px" alt="" src={avatar_url ?? ''} /> */}
-        <img width="30px" height="30px" alt="" src={users.avatar_url} />
-        {users.name && <span>Name : {users.name}</span>}
-        <span>{`UserName : ${users.login}`}</span>
-        <span> {`Followers :  ${users.followers}`}</span>
-        <span> {`Following:  ${users.following}`}</span>
-        {users.bio && <span>Bio:{users.bio}</span>}
-        {users.location && <span>Location :{users.location}</span>}
+        <img alt="" src={users.avatar_url} />
+        {users.name && <span> {users.name}</span>}
+        <span>{users.login}</span>
+        <button type="button">
+          <span>Follow</span>
+        </button>
+        <div>{users.bio && <span>{users.bio}</span>}</div>
+
+        <div className="followers a-center">
+          {' '}
+          <PeopleIcon className="icon" /> <span>{users.followers}</span>{' '}
+          Followrs . <span>{users.following}</span> Following
+        </div>
+
+        {/* <span> {`Following:  ${users.following}`}</span> */}
+        {users.location && (
+          <span className="a-center">
+            <LocationOnIcon className="icon" />
+            {users.location}
+          </span>
+        )}
         {users.blog && (
-          <a target="_blank" href={users.blog}>
+          <a className="a-center" target="_blank" href={users.blog}>
             {' '}
-            Blog: {users.blog}
+            <AttachFileIcon className="icon" /> {users.blog}
           </a>
         )}
       </div>

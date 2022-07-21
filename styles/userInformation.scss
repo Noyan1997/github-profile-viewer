@@ -1,0 +1,59 @@
+.info_patternt {
+  margin-right: 40px;
+  img {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+  }
+  :nth-child(2) {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  :nth-child(3) {
+    color: #8d8a8a;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  button {
+    background-color: #f6f8fa;
+    border: 1px solid #d5d7da;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    width: 270px;
+    height: 38px;
+    align-items: center;
+    border-radius: 4px;
+    margin: 4px 4px 22px 0px;
+    cursor: not-allowed;
+    span {
+      color: #24292f;
+      font-size: 17px;
+    }
+  }
+  div {
+    width: 282px;
+    margin-bottom: 25px;
+    span {
+      font-size: 16px;
+    }
+  }
+  .followers {
+    margin-bottom: 10px;
+
+    span {
+      font-size: 16px;
+      color: #000;
+      font-weight: bold;
+      margin-right: 2px;
+    }
+  }
+  .icon {
+    color: #8d8a8a;
+    margin-right: 3px;
+  }
+  a {
+    margin-top: 10px;
+  }
+}

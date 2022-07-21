@@ -16,6 +16,7 @@ const UserName: NextPage<{ users: IUserData }> = ({
     location,
     following,
     message,
+    repos_url,
     login,
   },
 }) => {
@@ -30,6 +31,11 @@ const UserName: NextPage<{ users: IUserData }> = ({
   }, [])
   if (message) return null
 
+  fetch(repos_url).then(async (data) => {
+    const res = await data.json()
+    console.log(res)
+  })
+
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -41,7 +47,12 @@ const UserName: NextPage<{ users: IUserData }> = ({
         <span> {`Following:  ${following}`}</span>
         {bio && <span>Bio:{bio}</span>}
         {location && <span>Location :{location}</span>}
-        {blog && <a href={blog}> Blog: {blog}</a>}
+        {blog && (
+          <a target="_blank" href={blog}>
+            {' '}
+            Blog: {blog}
+          </a>
+        )}
       </div>
     </>
   )

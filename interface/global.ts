@@ -8,4 +8,5 @@ export interface IUserData {
   location: string
   blog: string
   message: string
+  repos_url: string
 }

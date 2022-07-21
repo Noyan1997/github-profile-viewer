@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { IUserData } from '../../../interface/global'
@@ -21,11 +21,12 @@ const UserName: NextPage<{ users: IUserData }> = ({
   },
 }) => {
   const { query, push } = useRouter()
-  const notify = () => toast('this user is not exsist')
+  const isMountedRef = useRef<boolean>(false)
   useEffect(() => {
-    if (message) {
-      notify()
-      console.log('This user isnot exsitst')
+    if (message && !isMountedRef.current) {
+      toast.error('There is no user with this username')
+      // prevent to extra routing and rerendering
+      isMountedRef.current = true
       push('/')
     }
   }, [])

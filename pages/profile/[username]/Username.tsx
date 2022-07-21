@@ -3,58 +3,28 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Information from '../../../components/Profile/Information'
+import Repository from '../../../components/Profile/Repository'
 import { IUserData } from '../../../interface/global'
 
 // object destruction
-const UserName: NextPage<{ users: IUserData }> = ({
-  users: {
-    name,
-    avatar_url,
-    bio,
-    followers,
-    blog,
-    location,
-    following,
-    message,
-    repos_url,
-    login,
-  },
-}) => {
-  const { query, push } = useRouter()
+const UserName: NextPage<{ users: IUserData }> = ({ users }) => {
+  const { push } = useRouter()
   const isMountedRef = useRef<boolean>(false)
   useEffect(() => {
-    if (message && !isMountedRef.current) {
+    if (users.message && !isMountedRef.current) {
       toast.error('There is no user with this username')
       // prevent to extra routing and rerendering
       isMountedRef.current = true
       push('/')
     }
   }, [])
-  if (message) return null
-
-  fetch(repos_url).then(async (data) => {
-    const res = await data.json()
-    console.log(res)
-  })
+  if (users.message) return null
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {/* <img width="30px" height="30px" alt="" src={avatar_url ?? ''} /> */}
-        <img width="30px" height="30px" alt="" src={avatar_url} />
-        {name && <span>Name : {name}</span>}
-        <span>{`UserName : ${query.username}`}</span>
-        <span> {`Followers :  ${followers}`}</span>
-        <span> {`Following:  ${following}`}</span>
-        {bio && <span>Bio:{bio}</span>}
-        {location && <span>Location :{location}</span>}
-        {blog && (
-          <a target="_blank" href={blog}>
-            {' '}
-            Blog: {blog}
-          </a>
-        )}
-      </div>
+      <Information users={users} />
+      <Repository users={users} />
     </>
   )
 }

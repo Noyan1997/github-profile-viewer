@@ -10,3 +10,6 @@ export interface IUserData {
   message: string
   repos_url: string
 }
+export interface IInformation {
+  users: IUserData
+}

@@ -18,3 +18,17 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.pageNumbers {
+  list-style: none;
+  display: flex;
+}
+.pageNumbers li {
+  padding: 10px;
+  border: 1px solid;
+  cursor: pointer;
+}
+.pageNumbers li button {
+  background: transparent;
+  border: none;
+}

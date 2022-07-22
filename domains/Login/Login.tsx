@@ -2,17 +2,10 @@ import { Box } from '@chakra-ui/layout'
 import { Button, Input } from '@chakra-ui/react'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
+import useLogin from './Login.biz'
 
 const Login: NextPage = () => {
-  const [value, setValue] = useState<string>('kevwil')
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
-  const { push } = useRouter()
-  const onSubmit = useCallback(() => {
-    setIsSubmitting(true)
-    push(`/profile/${value}`)
-  }, [value, setIsSubmitting])
+  const { isSubmitting, onSubmit, setValue, value } = useLogin()
   return (
     <>
       <div className="login_page_parrent column w-100 j-center a-center ">

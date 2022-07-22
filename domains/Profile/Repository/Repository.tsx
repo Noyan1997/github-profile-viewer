@@ -75,7 +75,7 @@ const Repository: NextPage<IInformation> = ({ users }) => {
                   {info.visibility}
                 </span>
               </div>
-              <span>{info.description}</span>
+              <span className="description">{info.description}</span>
               <div className="row t-row">
                 <span className="a-center">{info.language}</span>
                 <span className="a-center">

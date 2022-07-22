@@ -3,7 +3,9 @@ import { Wrap, WrapItem } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import { BsFillPeopleFill, BsLink45Deg } from 'react-icons/bs'
 import { MdLocationOn } from 'react-icons/md'
+import { FormattedMessage } from 'react-intl'
 import { IInformation } from '../../../interface/global'
+import informMessage from './information.message'
 
 const Information: NextPage<IInformation> = ({ users }) => {
   return (
@@ -26,9 +28,19 @@ const Information: NextPage<IInformation> = ({ users }) => {
         <div>{users.bio && <span>{users.bio}</span>}</div>
 
         <div className="followers a-center">
-          {' '}
-          <BsFillPeopleFill className="icon" /> <span>{users.followers}</span>{' '}
-          Followrs . <span>{users.following}</span> Following
+          <BsFillPeopleFill className="icon" />
+          <FormattedMessage
+            {...informMessage.follower}
+            values={{
+              followerCount: <span>{users.followers}</span>,
+            }}
+          />
+          &nbsp;
+          <BsFillPeopleFill className="icon" />
+          <FormattedMessage
+            {...informMessage.following}
+            values={{ followingCount: <span>{users.following}</span> }}
+          />
         </div>
 
         {users.location && (
@@ -39,7 +51,6 @@ const Information: NextPage<IInformation> = ({ users }) => {
         )}
         {users.blog && (
           <a className="a-center" target="_blank" href={users.blog}>
-            {' '}
             <BsLink45Deg className="icon" /> {users.blog}
           </a>
         )}

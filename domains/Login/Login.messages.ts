@@ -4,11 +4,11 @@ const scope = 'loginMessage'
 const loginMessage = defineMessages({
   login: {
     id: `${scope}.login`,
-    defaultMessage: 'Sign in to GitHub',
+    defaultMessage: 'GitHub Profile viewer',
   },
-  signIn: {
-    id: `${scope}.signIn`,
-    defaultMessage: 'Sign in',
+  submitButton: {
+    id: `${scope}.submitButton`,
+    defaultMessage: 'View Profile',
   },
   fetchingProfile: {
     id: `${scope}.fetchingProfile`,

@@ -30,7 +30,7 @@ const Login: NextPage = () => {
             onClick={onSubmit}
             colorScheme="whatsapp"
           >
-            <FormattedMessage {...loginMsg.signIn} />
+            <FormattedMessage {...loginMsg.submitButton} />
           </Button>
         </Box>
       </Box>

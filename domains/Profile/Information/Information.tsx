@@ -1,4 +1,5 @@
 import { Avatar } from '@chakra-ui/avatar'
+import { Button } from '@chakra-ui/button'
 import { Wrap, WrapItem } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import { BsFillPeopleFill, BsLink45Deg } from 'react-icons/bs'
@@ -22,9 +23,10 @@ const Information: NextPage<IInformation> = ({ users }) => {
         </Wrap>
         {users.name && <span> {users.name}</span>}
         <span>{users.login}</span>
-        <button type="button">
-          <span>Follow</span>
-        </button>
+        <Button colorScheme="gray">
+          <FormattedMessage {...informMessage.followButton} />
+        </Button>
+
         <div>{users.bio && <span>{users.bio}</span>}</div>
 
         <div className="followers a-center">

@@ -1,3 +1,4 @@
+import { Grid, GridItem } from '@chakra-ui/layout'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
@@ -23,8 +24,19 @@ const UserName: NextPage<{ users: IUserData }> = ({ users }) => {
   return (
     <>
       <div className="row user_profile_parrent">
-        <Information users={users} />
-        <Repository users={users} />
+        <Grid
+          h="200px"
+          templateRows="repeat(2, 1fr)"
+          templateColumns="repeat(5, 1fr)"
+          gap={4}
+        >
+          <GridItem rowSpan={2} colSpan={1}>
+            <Information users={users} />
+          </GridItem>
+          <GridItem colSpan={4}>
+            <Repository users={users} />
+          </GridItem>
+        </Grid>
       </div>
     </>
   )

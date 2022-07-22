@@ -7,7 +7,6 @@ import Information from '../../../components/Profile/Information'
 import Repository from '../../../components/Profile/Repository'
 import { IUserData } from '../../../interface/global'
 
-// object destruction
 const UserName: NextPage<{ users: IUserData }> = ({ users }) => {
   const { push } = useRouter()
   const isMountedRef = useRef<boolean>(false)

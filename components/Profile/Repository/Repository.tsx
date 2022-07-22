@@ -23,7 +23,6 @@ const Repository: NextPage<IInformation> = ({ users }) => {
 
   const indexOfLastItem = currentPage * itemPerPage
   const indexOfFirstItem = indexOfLastItem - itemPerPage
-  //   const currenItem = info.slice(indexOfFirstItem, indexOfLastItem)
 
   const pages = []
   for (let i = 1; i < Math.ceil(info.length / itemPerPage); i++) {
@@ -59,7 +58,6 @@ const Repository: NextPage<IInformation> = ({ users }) => {
   const generateUserRepo = () => {
     fetch(users.repos_url).then(async (data) => {
       const res = await data.json()
-      console.log(222, res.name)
       setInfo(res)
     })
   }

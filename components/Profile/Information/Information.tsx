@@ -8,7 +8,6 @@ const Information: NextPage<IInformation> = ({ users }) => {
   return (
     <>
       <div className="info_patternt column">
-        {/* <img width="30px" height="30px" alt="" src={avatar_url ?? ''} /> */}
         <img alt="" src={users.avatar_url} />
         {users.name && <span> {users.name}</span>}
         <span>{users.login}</span>
@@ -23,7 +22,6 @@ const Information: NextPage<IInformation> = ({ users }) => {
           Followrs . <span>{users.following}</span> Following
         </div>
 
-        {/* <span> {`Following:  ${users.following}`}</span> */}
         {users.location && (
           <span className="a-center">
             <LocationOnIcon className="icon" />

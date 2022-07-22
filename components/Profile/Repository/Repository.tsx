@@ -2,58 +2,52 @@ import { Box, Center } from '@chakra-ui/layout'
 import ForkRightIcon from '@mui/icons-material/ForkRight'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { IInformation } from '../../../interface/global'
 
 const Repository: NextPage<IInformation> = ({ users }) => {
   const [info, setInfo] = useState<[]>([])
   const [currentPage, setCarrentPage] = useState<number>(1)
   const itemPerPage = 6
-  const pageNumberLimit = 10
-  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState<number>(10)
-  const [minPageNumberLimit, setMinPageNumberLimit] = useState<number>(0)
 
   useEffect(() => {
     generateUserRepo()
   }, [])
 
-  const handleClick = (e: any) => {
-    setCarrentPage(Number(e.target.id))
+  const handleClick = (pageNumber: number) => {
+    setCarrentPage(Number(pageNumber))
   }
 
-  const indexOfLastItem = currentPage * itemPerPage
-  const indexOfFirstItem = indexOfLastItem - itemPerPage
+  const indexOfLastItem = useMemo(
+    () => currentPage * itemPerPage,
+    [currentPage]
+  )
+  const indexOfFirstItem = useMemo(
+    () => indexOfLastItem - itemPerPage,
+    [indexOfLastItem]
+  )
 
-  const pages = []
-  for (let i = 1; i < Math.ceil(info.length / itemPerPage); i++) {
-    pages.push(i)
-  }
+  const pagesCount = useRef<number>(1)
+  // for (let i = 1; i < Math.ceil(info.length / itemPerPage); i++) {
+  //   pages.push(i)
+  // }
 
-  const renderPageNumbers = pages.map((number: any) => {
-    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-      return (
-        <li key={number} id={number} onClick={handleClick}>
-          {number}
-        </li>
-      )
-    } else return null
-  })
-
-  const handleNextBtn = () => {
-    setCarrentPage(currentPage + 1)
-    if (currentPage + 1 > maxPageNumberLimit) {
-      setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
-      setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
-    }
-  }
-
-  const handlePrevent = () => {
-    setCarrentPage(currentPage - 1)
-    if ((currentPage - 1) % maxPageNumberLimit == 0) {
-      setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
-      setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
-    }
-  }
+  const renderPageNumbers = useMemo(() => {
+    pagesCount.current = Math.ceil(info.length / itemPerPage)
+    return Array(pagesCount.current)
+      .fill(undefined)
+      .map((_, index: number) => {
+        const _page = index + 1
+        return (
+          <li
+            className={_page === currentPage ? 'active' : ''}
+            onClick={() => handleClick(_page)}
+          >
+            {_page}
+          </li>
+        )
+      })
+  }, [info.length, currentPage])
 
   const generateUserRepo = () => {
     fetch(users.repos_url).then(async (data) => {
@@ -99,16 +93,7 @@ const Repository: NextPage<IInformation> = ({ users }) => {
             </div>
           </Box>
         ))}
-        <ul className="pageNumbers">
-          {/* <li>
-            <button onClick={handlePrevent}>Prev</button>
-          </li> */}
-
-          {renderPageNumbers}
-          {/* <li>
-            <button onClick={handleNextBtn}>Next</button>
-          </li> */}
-        </ul>
+        <ul className="pageNumbers">{renderPageNumbers}</ul>
       </div>
     </>
   )

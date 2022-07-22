@@ -40,12 +40,18 @@
       }
     }
   }
+  .active {
+    border-width: 2px !important;
+    font-weight: bold;
+  }
   .pageNumbers {
     list-style: none;
     display: flex;
     justify-content: flex-end;
+    gap: 4px;
   }
   .pageNumbers li {
+    border-radius: 4px;
     padding: 10px;
     border: 1px solid;
     cursor: pointer;

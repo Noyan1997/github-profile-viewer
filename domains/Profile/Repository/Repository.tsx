@@ -97,7 +97,11 @@ const Repository: NextPage<IInformation> = ({ users }) => {
               </div>
             </Box>
           ))}
-        <ul className="pageNumbers">{!isFetching && renderPageNumbers}</ul>
+        {
+          <div className="pagination">
+            <ul className="pageNumbers">{!isFetching && renderPageNumbers}</ul>
+          </div>
+        }
       </div>
     </>
   )

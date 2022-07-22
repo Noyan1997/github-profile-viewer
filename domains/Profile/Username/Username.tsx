@@ -29,7 +29,7 @@ const UserName: NextPage<{ users: IUserData }> = ({ users }) => {
           <GridItem rowSpan={2} colSpan={1}>
             <Information users={users} />
           </GridItem>
-          <GridItem colSpan={3}>
+          <GridItem className="repository_parent" colSpan={3}>
             <Repository users={users} />
           </GridItem>
         </Grid>

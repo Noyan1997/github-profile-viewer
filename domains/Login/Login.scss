@@ -1,3 +1,15 @@
 .login_page_parrent {
   height: 100vh;
+  .login_box {
+    border: 1px solid $light_gray;
+    padding: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 4px;
+  }
+  input {
+    margin: 14px 0;
+  }
 }

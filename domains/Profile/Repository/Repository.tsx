@@ -9,36 +9,23 @@ import {
 import ForkRightIcon from '@mui/icons-material/ForkRight'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
-import { useEffect, useMemo, useState } from 'react'
-import { IInformation, IRepository } from '../../../interface/global'
+import { useMemo } from 'react'
+import { IInformation } from '../../../interface/global'
+import useRepository from './Repository.biz'
 
 const Repository: NextPage<IInformation> = ({ users }) => {
-  const [info, setInfo] = useState<IRepository[] | null>(null)
-  const [isFetching, setIsFetching] = useState<boolean>(false)
-  const [currentPage, setCarrentPage] = useState<number>(1)
-  const itemPerPage = 6
-
-  useEffect(() => {
-    generateUserRepo()
-  }, [])
-
-  const handleClick = (pageNumber: number) => {
-    setCarrentPage(Number(pageNumber))
-  }
-
-  const indexOfLastItem = useMemo(
-    () => currentPage * itemPerPage,
-    [currentPage]
-  )
-  const indexOfFirstItem = useMemo(
-    () => indexOfLastItem - itemPerPage,
-    [indexOfLastItem]
-  )
+  const {
+    currentPage,
+    handleClick,
+    info,
+    itemPerPage,
+    isFetching,
+    indexOfFirstItem,
+    indexOfLastItem,
+    _pagesCount,
+  } = useRepository(users)
 
   const renderPageNumbers = useMemo(() => {
-    const _pagesCount: number = Math.ceil(
-      Number(info?.length ?? 0) / itemPerPage
-    )
     return Array(_pagesCount)
       .fill(undefined)
       .map((_, index: number) => {
@@ -53,15 +40,6 @@ const Repository: NextPage<IInformation> = ({ users }) => {
         )
       })
   }, [info?.length, currentPage])
-
-  const generateUserRepo = () => {
-    setIsFetching(true)
-    fetch(users.repos_url).then(async (data) => {
-      const res = await data.json()
-      setInfo(res)
-      setIsFetching(false)
-    })
-  }
 
   const fetchingSection = useMemo(() => {
     if (isFetching)

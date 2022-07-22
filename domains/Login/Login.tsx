@@ -23,7 +23,7 @@ const Login: NextPage = () => {
           </span>
           <Box className="column">
             <Input
-              placeholder="User name"
+              placeholder="Username"
               type="text"
               onChange={(e) => setValue(e.target.value)}
               value={value}

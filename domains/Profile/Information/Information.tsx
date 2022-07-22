@@ -5,7 +5,7 @@ import { BsFillPeopleFill, BsLink45Deg } from 'react-icons/bs'
 import { MdLocationOn } from 'react-icons/md'
 import { FormattedMessage } from 'react-intl'
 import { IInformation } from '../../../interface/global'
-import informMessage from './information.message'
+import informMessage from './Information.message'
 
 const Information: NextPage<IInformation> = ({ users }) => {
   return (

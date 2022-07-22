@@ -1,4 +1,5 @@
-import { Box, Center } from '@chakra-ui/layout'
+import { Box } from '@chakra-ui/layout'
+import { Spinner } from '@chakra-ui/react'
 import ForkRightIcon from '@mui/icons-material/ForkRight'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
@@ -7,6 +8,7 @@ import { IInformation } from '../../../interface/global'
 
 const Repository: NextPage<IInformation> = ({ users }) => {
   const [info, setInfo] = useState<[]>([])
+  const [isFetching, setIsFetching] = useState<boolean>(false)
   const [currentPage, setCarrentPage] = useState<number>(1)
   const itemPerPage = 6
 
@@ -50,18 +52,24 @@ const Repository: NextPage<IInformation> = ({ users }) => {
   }, [info.length, currentPage])
 
   const generateUserRepo = () => {
+    setIsFetching(true)
     fetch(users.repos_url).then(async (data) => {
       const res = await data.json()
       setInfo(res)
+      setIsFetching(false)
     })
   }
   return (
     <>
       <div className="column gride_container">
-        {!info.length && (
-          <Center h="100px">
-            <span>Loading...</span>
-          </Center>
+        {isFetching && (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
         )}
         {info.slice(indexOfFirstItem, indexOfLastItem).map((info: any) => (
           <Box

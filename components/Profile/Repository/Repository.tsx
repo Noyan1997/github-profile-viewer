@@ -1,5 +1,11 @@
 import { Box } from '@chakra-ui/layout'
-import { Spinner } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  Spinner,
+} from '@chakra-ui/react'
 import ForkRightIcon from '@mui/icons-material/ForkRight'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
@@ -71,6 +77,17 @@ const Repository: NextPage<IInformation> = ({ users }) => {
             size="xl"
           />
         )}
+
+        {!isFetching && !info.length && (
+          <Alert status="error">
+            <AlertIcon />
+            <AlertTitle>Repository not Founded!</AlertTitle>
+            <AlertDescription>
+              Your Repository has not any item.
+            </AlertDescription>
+          </Alert>
+        )}
+
         {info.slice(indexOfFirstItem, indexOfLastItem).map((info: any) => (
           <Box
             as="div"

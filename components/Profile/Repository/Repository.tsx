@@ -1,3 +1,6 @@
+import { Box } from '@chakra-ui/layout'
+import ForkRightIcon from '@mui/icons-material/ForkRight'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { IInformation } from '../../../interface/global'
@@ -62,11 +65,36 @@ const Repository: NextPage<IInformation> = ({ users }) => {
   }
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div className="column gride_container">
         {info.slice(indexOfFirstItem, indexOfLastItem).map((info: any) => (
-          <div style={{ border: '1px solid' }}>
-            <h6>{info.name}</h6>
-          </div>
+          <Box
+            as="div"
+            borderRadius="md"
+            bg="transparent"
+            color="#000"
+            px={180}
+            h={155}
+            className="repo_box column "
+          >
+            <div className="row f-row">
+              <span>{info.name}</span>
+              <span className="visibility j-center a-center">
+                {info.visibility}
+              </span>
+            </div>
+            <span>{info.description}</span>
+            <div className="row t-row">
+              <span className="a-center">{info.language}</span>
+              <span className="a-center">
+                <StarBorderIcon />
+                {info.stargazers_count}
+              </span>
+              <span className="a-center">
+                <ForkRightIcon />
+                {info.forks}
+              </span>
+            </div>
+          </Box>
         ))}
         <ul className="pageNumbers">
           {/* <li>

@@ -1,0 +1,57 @@
+.gride_container {
+  display: grid;
+  grid-template-columns: auto auto;
+  .repo_box {
+    margin: 4px;
+    border: 1px solid #d5d7da;
+    border-radius: 4px;
+    margin-left: 5px;
+    padding-inline-start: 35px;
+    padding-inline-end: 35px;
+
+    max-width: 488px;
+    min-width: 488px;
+
+    justify-content: center;
+    span {
+      margin-top: 6px;
+      font-size: 15px;
+      color: #766c6c;
+    }
+    .visibility {
+      border: 1px solid #d5d7da;
+      border-radius: 20px;
+      width: 50px;
+      width: 73px;
+      height: 34px;
+      margin-top: 0;
+    }
+    .f-row {
+      justify-content: space-between;
+      :nth-child(1) {
+        color: #0969da;
+        font-weight: bold;
+      }
+    }
+    .t-row {
+      justify-content: flex-start;
+      span {
+        padding: 11px;
+      }
+    }
+  }
+  .pageNumbers {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .pageNumbers li {
+    padding: 10px;
+    border: 1px solid;
+    cursor: pointer;
+  }
+  .pageNumbers li button {
+    background: transparent;
+    border: none;
+  }
+}

@@ -3,14 +3,14 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { IUserData } from '../../../interface/global'
 const useUsername = (users: IUserData) => {
-  const { push } = useRouter()
+  const { push, query } = useRouter()
   const isMountedRef = useRef<boolean>(false)
   const toast = useToast()
   useEffect(() => {
     if (users.message && !isMountedRef.current) {
       //   toast.error('There is no user with this username')
       toast({
-        title: 'User not found!',
+        title: `User ${query.username} not found!`,
         description: 'Check username and try again',
         status: 'error',
         duration: 3000,

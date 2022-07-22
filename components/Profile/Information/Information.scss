@@ -10,14 +10,14 @@
     font-weight: 600;
   }
   :nth-child(3) {
-    color: #8d8a8a;
+    color: gray;
     font-size: 20px;
     font-weight: 600;
   }
 
   button {
-    background-color: #f6f8fa;
-    border: 1px solid #d5d7da;
+    background-color: $light;
+    border: 1px solid $light_gray;
     outline: none;
     display: flex;
     justify-content: center;
@@ -28,7 +28,7 @@
     margin: 4px 4px 22px 0px;
     cursor: not-allowed;
     span {
-      color: #24292f;
+      color: $dark;
       font-size: 17px;
     }
   }
@@ -44,13 +44,13 @@
 
     span {
       font-size: 16px;
-      color: #000;
+      color: black;
       font-weight: bold;
       margin-right: 2px;
     }
   }
   .icon {
-    color: #8d8a8a;
+    color: gray;
     margin-right: 3px;
   }
   a {

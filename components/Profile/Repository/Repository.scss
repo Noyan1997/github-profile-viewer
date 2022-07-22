@@ -3,7 +3,7 @@
   grid-template-columns: auto auto;
   .repo_box {
     margin: 4px;
-    border: 1px solid #d5d7da;
+    border: 1px solid $light_gray;
     border-radius: 4px;
     margin-left: 5px;
     padding-inline-start: 35px;
@@ -16,10 +16,10 @@
     span {
       margin-top: 6px;
       font-size: 15px;
-      color: #766c6c;
+      color: gray;
     }
     .visibility {
-      border: 1px solid #d5d7da;
+      border: 1px solid $light_gray;
       border-radius: 20px;
       width: 50px;
       width: 73px;
@@ -29,8 +29,8 @@
     .f-row {
       justify-content: space-between;
       :nth-child(1) {
-        color: #0969da;
-        font-weight: bold;
+        color: $dark_blue;
+        font-weight: 600;
       }
     }
     .t-row {
@@ -42,7 +42,7 @@
   }
   .active {
     border-width: 2px !important;
-    font-weight: bold;
+    font-weight: 600;
   }
   .pageNumbers {
     list-style: none;

@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/layout'
+import { Box, Center } from '@chakra-ui/layout'
 import ForkRightIcon from '@mui/icons-material/ForkRight'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
@@ -64,6 +64,11 @@ const Repository: NextPage<IInformation> = ({ users }) => {
   return (
     <>
       <div className="column gride_container">
+        {!info.length && (
+          <Center h="100px">
+            <span>Loading...</span>
+          </Center>
+        )}
         {info.slice(indexOfFirstItem, indexOfLastItem).map((info: any) => (
           <Box
             as="div"

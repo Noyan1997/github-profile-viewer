@@ -9,7 +9,7 @@ import {
 import ForkRightIcon from '@mui/icons-material/ForkRight'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { IInformation, IRepository } from '../../../interface/global'
 
 const Repository: NextPage<IInformation> = ({ users }) => {
@@ -35,11 +35,11 @@ const Repository: NextPage<IInformation> = ({ users }) => {
     [indexOfLastItem]
   )
 
-  const pagesCount = useRef<number>(1)
-
   const renderPageNumbers = useMemo(() => {
-    pagesCount.current = Math.ceil(Number(info?.length ?? 0) / itemPerPage)
-    return Array(pagesCount.current)
+    const _pagesCount: number = Math.ceil(
+      Number(info?.length ?? 0) / itemPerPage
+    )
+    return Array(_pagesCount)
       .fill(undefined)
       .map((_, index: number) => {
         const _page = index + 1

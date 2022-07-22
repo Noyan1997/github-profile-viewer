@@ -78,7 +78,7 @@ const Repository: NextPage<IInformation> = ({ users }) => {
       return (
         <Alert status="error">
           <AlertIcon />
-          <AlertTitle>Repository not Founded!</AlertTitle>
+          <AlertTitle>Repository not Found!</AlertTitle>
           <AlertDescription>Your Repository has not any item.</AlertDescription>
         </Alert>
       )

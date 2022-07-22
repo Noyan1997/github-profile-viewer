@@ -36,7 +36,6 @@ const useRepository = (users: IUserData) => {
 
   return {
     info,
-    itemPerPage,
     currentPage,
     indexOfFirstItem,
     indexOfLastItem,

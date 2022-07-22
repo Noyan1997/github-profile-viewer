@@ -18,7 +18,6 @@ const Repository: NextPage<IInformation> = ({ users }) => {
     currentPage,
     handleClick,
     info,
-    itemPerPage,
     isFetching,
     indexOfFirstItem,
     indexOfLastItem,

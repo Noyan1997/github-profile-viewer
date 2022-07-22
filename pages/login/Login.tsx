@@ -1,14 +1,18 @@
 import { Box } from '@chakra-ui/layout'
-import { Input } from '@chakra-ui/react'
+import { Button, Input } from '@chakra-ui/react'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 const Login: NextPage = () => {
   const [value, setValue] = useState<string>('kevwil')
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const { push } = useRouter()
-
+  const onSubmit = useCallback(() => {
+    setIsSubmitting(true)
+    push(`/profile/${value}`)
+  }, [value, setIsSubmitting])
   return (
     <>
       <div className="login_page_parrent column w-100 j-center a-center ">
@@ -21,10 +25,15 @@ const Login: NextPage = () => {
             onChange={(e: any) => setValue(e.target.value)}
             value={value}
           />
-          <Input placeholder="password" disabled />
-          <button disabled={!value} onClick={() => push(`/profile/${value}`)}>
-            Sign in
-          </button>
+          <Button
+            isLoading={isSubmitting}
+            loadingText="Fetching Profile"
+            disabled={!value || isSubmitting}
+            onClick={onSubmit}
+            colorScheme="whatsapp"
+          >
+            Sign In
+          </Button>
         </Box>
       </div>
     </>

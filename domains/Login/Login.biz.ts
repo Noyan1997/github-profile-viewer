@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 
 const useLogin = () => {
-  const [value, setValue] = useState<string>('kevwil')
+  const [value, setValue] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const { push } = useRouter()
   const onSubmit = useCallback(() => {

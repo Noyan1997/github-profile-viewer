@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IRepository, IUserData } from '../../../interface/global'
 
 const useRepository = (users: IUserData) => {
@@ -8,37 +8,32 @@ const useRepository = (users: IUserData) => {
   const itemPerPage = 6
 
   useEffect(() => {
-    generateUserRepo()
+    generateUserRepo(1)
   }, [])
 
   const handleClick = (pageNumber: number) => {
-    setCarrentPage(Number(pageNumber))
+    setCarrentPage(pageNumber)
+    generateUserRepo(pageNumber)
   }
 
-  const indexOfLastItem = useMemo(
-    () => currentPage * itemPerPage,
-    [currentPage]
-  )
-  const indexOfFirstItem = useMemo(
-    () => indexOfLastItem - itemPerPage,
-    [indexOfLastItem]
-  )
-
-  const generateUserRepo = () => {
+  const generateUserRepo = (_page = 1) => {
     setIsFetching(true)
-    fetch(users.repos_url + '?sort=updated').then(async (data) => {
-      const res = await data.json()
-      setInfo(res)
-      setIsFetching(false)
-    })
+    fetch(users.repos_url + '?sort=updated&per_page=6&page=' + _page).then(
+      async (data) => {
+        const res = await data.json()
+        console.log(1111, res)
+        setInfo(res)
+        setIsFetching(false)
+      }
+    )
   }
-  const _pagesCount: number = Math.ceil(Number(info?.length ?? 0) / itemPerPage)
+  const _pagesCount: number = Math.ceil(
+    Number(users?.public_repos ?? 0) / itemPerPage
+  )
 
   return {
     info,
     currentPage,
-    indexOfFirstItem,
-    indexOfLastItem,
     handleClick,
     isFetching,
     _pagesCount,

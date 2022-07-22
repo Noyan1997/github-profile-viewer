@@ -14,15 +14,8 @@ import { IInformation } from '../../../interface/global'
 import useRepository from './Repository.biz'
 
 const Repository: NextPage<IInformation> = ({ users }) => {
-  const {
-    currentPage,
-    handleClick,
-    info,
-    isFetching,
-    indexOfFirstItem,
-    indexOfLastItem,
-    _pagesCount,
-  } = useRepository(users)
+  const { currentPage, handleClick, info, isFetching, _pagesCount } =
+    useRepository(users)
 
   const renderPageNumbers = useMemo(() => {
     return Array(_pagesCount)
@@ -65,37 +58,38 @@ const Repository: NextPage<IInformation> = ({ users }) => {
     <>
       <div className="column gride_container">
         {fetchingSection}
-        {info?.slice(indexOfFirstItem, indexOfLastItem).map((info) => (
-          <Box
-            as="div"
-            borderRadius="md"
-            bg="transparent"
-            color="#000"
-            px={180}
-            h={155}
-            className="repo_box column "
-          >
-            <div className="row f-row">
-              <span>{info.name}</span>
-              <span className="visibility j-center a-center">
-                {info.visibility}
-              </span>
-            </div>
-            <span>{info.description}</span>
-            <div className="row t-row">
-              <span className="a-center">{info.language}</span>
-              <span className="a-center">
-                <AiOutlineStar />
-                {info.stargazers_count}
-              </span>
-              <span className="a-center">
-                <BiGitRepoForked />
-                {info.forks}
-              </span>
-            </div>
-          </Box>
-        ))}
-        <ul className="pageNumbers">{renderPageNumbers}</ul>
+        {!isFetching &&
+          info?.map((info) => (
+            <Box
+              as="div"
+              borderRadius="md"
+              bg="transparent"
+              color="#000"
+              px={180}
+              h={155}
+              className="repo_box column "
+            >
+              <div className="row f-row">
+                <span>{info.name}</span>
+                <span className="visibility j-center a-center">
+                  {info.visibility}
+                </span>
+              </div>
+              <span>{info.description}</span>
+              <div className="row t-row">
+                <span className="a-center">{info.language}</span>
+                <span className="a-center">
+                  <AiOutlineStar />
+                  {info.stargazers_count}
+                </span>
+                <span className="a-center">
+                  <BiGitRepoForked />
+                  {info.forks}
+                </span>
+              </div>
+            </Box>
+          ))}
+        <ul className="pageNumbers">{!isFetching && renderPageNumbers}</ul>
       </div>
     </>
   )

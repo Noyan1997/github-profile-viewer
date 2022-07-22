@@ -9,6 +9,7 @@ export interface IUserData {
   blog: string
   message: string
   repos_url: string
+  public_repos: number
 }
 export interface IInformation {
   users: IUserData

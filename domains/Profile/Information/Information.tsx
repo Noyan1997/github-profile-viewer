@@ -1,9 +1,8 @@
 import { Avatar } from '@chakra-ui/avatar'
 import { Wrap, WrapItem } from '@chakra-ui/layout'
-import AttachFileIcon from '@mui/icons-material/AttachFile'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
-import PeopleIcon from '@mui/icons-material/People'
 import type { NextPage } from 'next'
+import { BsFillPeopleFill, BsLink45Deg } from 'react-icons/bs'
+import { MdLocationOn } from 'react-icons/md'
 import { IInformation } from '../../../interface/global'
 
 const Information: NextPage<IInformation> = ({ users }) => {
@@ -28,20 +27,20 @@ const Information: NextPage<IInformation> = ({ users }) => {
 
         <div className="followers a-center">
           {' '}
-          <PeopleIcon className="icon" /> <span>{users.followers}</span>{' '}
+          <BsFillPeopleFill className="icon" /> <span>{users.followers}</span>{' '}
           Followrs . <span>{users.following}</span> Following
         </div>
 
         {users.location && (
           <span className="a-center">
-            <LocationOnIcon className="icon" />
+            <MdLocationOn className="icon" />
             {users.location}
           </span>
         )}
         {users.blog && (
           <a className="a-center" target="_blank" href={users.blog}>
             {' '}
-            <AttachFileIcon className="icon" /> {users.blog}
+            <BsLink45Deg className="icon" /> {users.blog}
           </a>
         )}
       </div>

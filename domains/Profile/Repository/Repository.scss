@@ -1,6 +1,10 @@
 .gride_container {
   display: grid !important;
   grid-template-columns: auto auto;
+  border: 1px solid $light_gray;
+  padding: 30px;
+  border-radius: 4px;
+
   .repo_box {
     margin: 4px;
     border: 1px solid $light_gray;
@@ -49,6 +53,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 4px;
+    margin-top: 47px;
   }
   .pageNumbers li {
     border-radius: 4px;

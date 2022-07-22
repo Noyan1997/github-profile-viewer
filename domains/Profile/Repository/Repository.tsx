@@ -6,10 +6,10 @@ import {
   AlertTitle,
   Spinner,
 } from '@chakra-ui/react'
-import ForkRightIcon from '@mui/icons-material/ForkRight'
-import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
 import { useMemo } from 'react'
+import { AiOutlineStar } from 'react-icons/ai'
+import { BiGitRepoForked } from 'react-icons/bi'
 import { IInformation } from '../../../interface/global'
 import useRepository from './Repository.biz'
 
@@ -85,11 +85,11 @@ const Repository: NextPage<IInformation> = ({ users }) => {
             <div className="row t-row">
               <span className="a-center">{info.language}</span>
               <span className="a-center">
-                <StarBorderIcon />
+                <AiOutlineStar />
                 {info.stargazers_count}
               </span>
               <span className="a-center">
-                <ForkRightIcon />
+                <BiGitRepoForked />
                 {info.forks}
               </span>
             </div>

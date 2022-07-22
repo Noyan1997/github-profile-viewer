@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Information from '../../../domains/Profile/Information'
-import Repository from '../../../domains/Profile/Repository'
 import { IUserData } from '../../../interface/global'
+import Information from '../Information'
+import Repository from '../Repository'
 
 const UserName: NextPage<{ users: IUserData }> = ({ users }) => {
   const { push } = useRouter()

@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 
-export { default } from './Username'
+export { default } from '../../../domains/Profile/Username/Username'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const _userName = context.query.username

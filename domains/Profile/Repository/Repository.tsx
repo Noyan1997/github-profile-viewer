@@ -83,6 +83,7 @@ const Repository: NextPage<IInformation> = ({ users }) => {
         </Alert>
       )
   }, [info?.length, isFetching])
+
   return (
     <>
       <div className="column gride_container">

@@ -1,1 +1,1 @@
-export { default } from '../../components/Login/Login'
+export { default } from '../../domains/Login/Login'

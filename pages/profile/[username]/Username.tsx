@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Information from '../../../components/Profile/Information'
-import Repository from '../../../components/Profile/Repository'
+import Information from '../../../domains/Profile/Information'
+import Repository from '../../../domains/Profile/Repository'
 import { IUserData } from '../../../interface/global'
 
 const UserName: NextPage<{ users: IUserData }> = ({ users }) => {

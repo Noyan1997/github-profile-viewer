@@ -10,8 +10,10 @@ import type { NextPage } from 'next'
 import { useMemo } from 'react'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiGitRepoForked } from 'react-icons/bi'
+import { FormattedMessage } from 'react-intl'
 import { IInformation } from '../../../interface/global'
 import useRepository from './Repository.biz'
+import repoMsg from './Repository.message'
 
 const Repository: NextPage<IInformation> = ({ users }) => {
   const { currentPage, handleClick, info, isFetching, _pagesCount } =
@@ -48,8 +50,14 @@ const Repository: NextPage<IInformation> = ({ users }) => {
       return (
         <Alert status="error">
           <AlertIcon />
-          <AlertTitle>Repository not Found!</AlertTitle>
-          <AlertDescription>Your Repository has not any item.</AlertDescription>
+          <AlertTitle>
+            <FormattedMessage {...repoMsg.toastTitle} />
+          </AlertTitle>
+          <AlertDescription>
+            <AlertTitle>
+              <FormattedMessage {...repoMsg.toastDescription} />
+            </AlertTitle>
+          </AlertDescription>
         </Alert>
       )
   }, [info?.length, isFetching])

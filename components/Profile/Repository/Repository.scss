@@ -1,5 +1,5 @@
 .gride_container {
-  display: grid;
+  display: grid !important;
   grid-template-columns: auto auto;
   .repo_box {
     margin: 4px;

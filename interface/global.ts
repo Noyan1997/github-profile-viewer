@@ -13,3 +13,12 @@ export interface IUserData {
 export interface IInformation {
   users: IUserData
 }
+
+export interface IRepository {
+  name: string
+  visibility: string
+  description: string
+  language: string
+  stargazers_count: number
+  forks: number
+}

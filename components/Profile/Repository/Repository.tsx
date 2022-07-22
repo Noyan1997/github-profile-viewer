@@ -10,10 +10,10 @@ import ForkRightIcon from '@mui/icons-material/ForkRight'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import type { NextPage } from 'next'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { IInformation } from '../../../interface/global'
+import { IInformation, IRepository } from '../../../interface/global'
 
 const Repository: NextPage<IInformation> = ({ users }) => {
-  const [info, setInfo] = useState<[] | null>(null)
+  const [info, setInfo] = useState<IRepository[] | null>(null)
   const [isFetching, setIsFetching] = useState<boolean>(false)
   const [currentPage, setCarrentPage] = useState<number>(1)
   const itemPerPage = 6
@@ -87,7 +87,7 @@ const Repository: NextPage<IInformation> = ({ users }) => {
     <>
       <div className="column gride_container">
         {fetchingSection}
-        {info?.slice(indexOfFirstItem, indexOfLastItem).map((info: any) => (
+        {info?.slice(indexOfFirstItem, indexOfLastItem).map((info) => (
           <Box
             as="div"
             borderRadius="md"

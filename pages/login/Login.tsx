@@ -22,7 +22,7 @@ const Login: NextPage = () => {
           <Input
             placeholder="User name"
             type="text"
-            onChange={(e: any) => setValue(e.target.value)}
+            onChange={(e) => setValue(e.target.value)}
             value={value}
           />
           <Button

@@ -21,4 +21,5 @@ export interface IRepository {
   language: string
   stargazers_count: number
   forks: number
+  updated_at: string
 }

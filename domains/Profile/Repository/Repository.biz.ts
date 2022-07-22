@@ -26,7 +26,7 @@ const useRepository = (users: IUserData) => {
 
   const generateUserRepo = () => {
     setIsFetching(true)
-    fetch(users.repos_url).then(async (data) => {
+    fetch(users.repos_url + '?sort=updated').then(async (data) => {
       const res = await data.json()
       setInfo(res)
       setIsFetching(false)

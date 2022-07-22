@@ -1,3 +1,5 @@
+import { Avatar } from '@chakra-ui/avatar'
+import { Wrap, WrapItem } from '@chakra-ui/layout'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import PeopleIcon from '@mui/icons-material/People'
@@ -8,7 +10,15 @@ const Information: NextPage<IInformation> = ({ users }) => {
   return (
     <>
       <div className="info_patternt column">
-        <img alt="" src={users.avatar_url} />
+        <Wrap>
+          <WrapItem>
+            <Avatar
+              size="2xl"
+              name={users.name || users.login}
+              src={users.avatar_url}
+            />
+          </WrapItem>
+        </Wrap>
         {users.name && <span> {users.name}</span>}
         <span>{users.login}</span>
         <button type="button">

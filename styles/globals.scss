@@ -1,8 +1,8 @@
 @import '../styles/vriables.scss';
-@import '../components/Login/Login.scss';
-@import '../components/Profile/Repository/Repository.scss';
-@import '../components/Profile/Information/Information.scss';
-@import '../components/Profile/Profile.scss';
+@import '../domains/Login/Login.scss';
+@import '../domains/Profile/Repository/Repository.scss';
+@import '../domains/Profile/Information/Information.scss';
+@import '../domains/Profile/Profile.scss';
 
 html,
 body {

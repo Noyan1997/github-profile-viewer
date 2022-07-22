@@ -13,7 +13,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { IInformation } from '../../../interface/global'
 
 const Repository: NextPage<IInformation> = ({ users }) => {
-  const [info, setInfo] = useState<[]>([])
+  const [info, setInfo] = useState<[] | null>(null)
   const [isFetching, setIsFetching] = useState<boolean>(false)
   const [currentPage, setCarrentPage] = useState<number>(1)
   const itemPerPage = 6
@@ -36,12 +36,9 @@ const Repository: NextPage<IInformation> = ({ users }) => {
   )
 
   const pagesCount = useRef<number>(1)
-  // for (let i = 1; i < Math.ceil(info.length / itemPerPage); i++) {
-  //   pages.push(i)
-  // }
 
   const renderPageNumbers = useMemo(() => {
-    pagesCount.current = Math.ceil(info.length / itemPerPage)
+    pagesCount.current = Math.ceil(Number(info?.length ?? 0) / itemPerPage)
     return Array(pagesCount.current)
       .fill(undefined)
       .map((_, index: number) => {
@@ -55,7 +52,7 @@ const Repository: NextPage<IInformation> = ({ users }) => {
           </li>
         )
       })
-  }, [info.length, currentPage])
+  }, [info?.length, currentPage])
 
   const generateUserRepo = () => {
     setIsFetching(true)
@@ -65,30 +62,32 @@ const Repository: NextPage<IInformation> = ({ users }) => {
       setIsFetching(false)
     })
   }
+
+  const fetchingSection = useMemo(() => {
+    if (isFetching)
+      return (
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      )
+    else if (info !== null && !info?.length && !isFetching)
+      return (
+        <Alert status="error">
+          <AlertIcon />
+          <AlertTitle>Repository not Founded!</AlertTitle>
+          <AlertDescription>Your Repository has not any item.</AlertDescription>
+        </Alert>
+      )
+  }, [info?.length, isFetching])
   return (
     <>
       <div className="column gride_container">
-        {isFetching && (
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        )}
-
-        {!isFetching && !info.length && (
-          <Alert status="error">
-            <AlertIcon />
-            <AlertTitle>Repository not Founded!</AlertTitle>
-            <AlertDescription>
-              Your Repository has not any item.
-            </AlertDescription>
-          </Alert>
-        )}
-
-        {info.slice(indexOfFirstItem, indexOfLastItem).map((info: any) => (
+        {fetchingSection}
+        {info?.slice(indexOfFirstItem, indexOfLastItem).map((info: any) => (
           <Box
             as="div"
             borderRadius="md"

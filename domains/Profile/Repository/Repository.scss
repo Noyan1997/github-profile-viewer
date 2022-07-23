@@ -49,6 +49,7 @@
   .active {
     border-width: 2px !important;
     font-weight: 600;
+    pointer-events: none;
   }
   .pageNumbers {
     list-style: none;

@@ -1,1 +1,1 @@
-export { default } from './[username]'
+export { default } from '../login'

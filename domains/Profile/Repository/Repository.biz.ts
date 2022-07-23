@@ -18,14 +18,13 @@ const useRepository = (users: IUserData) => {
 
   const generateUserRepo = (_page = 1) => {
     setIsFetching(true)
-    fetch(users.repos_url + '?sort=updated&per_page=6&page=' + _page).then(
-      async (data) => {
-        const res = await data.json()
-        console.log(1111, res)
-        setInfo(res)
-        setIsFetching(false)
-      }
-    )
+    fetch(
+      `${users.repos_url}?sort=updated&per_page=${itemPerPage}&page=${_page}`
+    ).then(async (data) => {
+      const res = await data.json()
+      setInfo(res)
+      setIsFetching(false)
+    })
   }
   const _pagesCount: number = Math.ceil(
     Number(users?.public_repos ?? 0) / itemPerPage
